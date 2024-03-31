@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -26,11 +26,27 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 const SignIn = (props) => {
+
+  const [formInput, setFormInput] = useState({
+    email: "",
+    password: ""
+  })
+  const [errorMsg, setErrorMsg] = useState("")
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    if(formInput.email !== "admin" || formInput.password !== "admin"){
+      setErrorMsg("Invalid Username or Password")
+    }else{
     props.handleLogin()
+    }
     };
+
+    const handleChange = (event) => {
+      const { value, name } = event.target
+      setFormInput(prev => ({ ...prev, [name]: value })
+      )
+    }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -51,6 +67,7 @@ const SignIn = (props) => {
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <div  style={{color: "red"}}>{errorMsg}</div>
             <TextField
               margin="normal"
               required
@@ -60,6 +77,8 @@ const SignIn = (props) => {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={handleChange}
+              value={formInput.email}
             />
             <TextField
               margin="normal"
@@ -70,6 +89,8 @@ const SignIn = (props) => {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleChange}
+              value={formInput.password}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
