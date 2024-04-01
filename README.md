@@ -14,8 +14,10 @@ Password: admin
 
 4. By Clicking on each Users row a dialog will appear displaying users details. Click on close button to close the dialog.
 
-5. One can try resizing the resolution of the screen.
+5. When the column headers are hovered, it provides functionalities such as sort asc/desc, filter columns with certain value, manage column(hide/show).
 
-6. Logout button will log out from the application.
+6. One can try resizing the resolution of the screen.
+
+7. Logout button will log out from the application.
 
 Please note this is just the initial state of design more enhancements will be done in future.
